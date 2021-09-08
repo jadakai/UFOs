@@ -32,6 +32,7 @@ function updateFilters() {
 
     // 4a. Save the element that was changed as a variable.
     let changedElement = d3.select(this);
+    console.log(this)
 
     // 4b. Save the value that was changed as a variable.
     let elementValue = changedElement.property("value");
@@ -63,10 +64,10 @@ function updateFilters() {
   
     // 9. Loop through all of the filters and keep any data that
     // matches the filter values
-    filteredData.forEach((filters) => {
-      if (filters) {
-        filteredData = filteredData.filter(row => row.filterId === filters[filterID]);
-      };
+    Object.entries(filters).forEach(([key,value]) => {
+    
+      filteredData = filteredData.filter(row => row[key] === value);
+      
     })
   
     // 10. Finally, rebuild the table using the filtered data
